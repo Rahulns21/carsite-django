@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
 EXTERNAL_APPS = [
     'pages.apps.PagesConfig',
+    'cars.apps.CarsConfig',
+    'ckeditor',
+    'django.contrib.humanize',
 ]
 
 INSTALLED_APPS += EXTERNAL_APPS
