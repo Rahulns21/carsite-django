@@ -49,17 +49,30 @@ class Cars(models.Model):
         ('Electric', 'Electric'),
     )
 
+    drivetrain_choices = (
+        ('Front Wheel Drive (FWD)', 'Front Wheel Drive (FWD)'),
+        ('Rear Wheel Drive (RWD)', 'Rear Wheel Drive (RWD)'),
+        ('All Wheel Drive (AWD)', 'All Wheel Drive (AWD)'),
+        ('4 Wheel Drive (4WD)', '4 Wheel Drive (4WD)'),
+    )
+
+    condition_choices = (
+        ('New', 'New'),
+        ('Used', 'Used'),
+    )
+
     year_choice = []
     for y in range(datetime.now().year, 1949, -1):
         year_choice.append((y, y))
     
+    car_brand = models.CharField(max_length=200)
     car_title = models.CharField(max_length=200)
     state = models.CharField(choices=indian_states, max_length=200)
     city = models.CharField(max_length=200)
     color = models.CharField(max_length=200)
     model = models.CharField(max_length=200)
     year = models.PositiveIntegerField(('year'), choices=year_choice)
-    condition = models.CharField(max_length=200)
+    condition = models.CharField(choices=condition_choices, max_length=200)
     price = models.PositiveIntegerField()
     description = RichTextField()
     car_photo = models.ImageField(upload_to='photos/%Y/%m/%d/')
@@ -70,6 +83,7 @@ class Cars(models.Model):
     features = MultiSelectField(choices=features_choices, max_length=2000)
     body_style = models.CharField(max_length=200)
     engine = models.CharField(max_length=200)
+    drivetrain = models.CharField(choices=drivetrain_choices, max_length=500)
     transmission_type = models.CharField(choices=transmission_choices, max_length=200)
     interior = models.CharField(max_length=200)
     kilometers = models.PositiveIntegerField()
