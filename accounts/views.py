@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as user_login, authenticate, logout as user_logout
 from django.contrib.auth.models import User
 from .decorators import user_not_authenticated
+from django.views.decorators.csrf import csrf_protect
 
 @user_not_authenticated
 def login(request):
@@ -60,9 +62,11 @@ def register(request):
     else:
         return render(request, 'accounts/register.html')
 
+@login_required
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
 
+@csrf_protect
 def logout(request):
     if request.method == 'POST':
         user_logout(request)
