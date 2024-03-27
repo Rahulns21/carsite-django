@@ -5,6 +5,8 @@ from django.contrib.auth import login as user_login, authenticate, logout as use
 from django.contrib.auth.models import User
 from .decorators import user_not_authenticated
 from django.views.decorators.csrf import csrf_protect
+from contacts.models import Contact
+from cars.models import Cars
 
 @user_not_authenticated
 def login(request):
@@ -64,7 +66,11 @@ def register(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    user_inquiry = Contact.objects.order_by('-created_date').filter(user=request.user)
+    data = {
+        'inquiries': user_inquiry,
+    }
+    return render(request, 'accounts/dashboard.html', data)
 
 @csrf_protect
 def logout(request):

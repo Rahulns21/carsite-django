@@ -51,12 +51,14 @@ EXTERNAL_APPS = [
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
     'cars.apps.CarsConfig',
+    'contacts.apps.ContactsConfig',
     'ckeditor',
     'django.contrib.humanize',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'phonenumber_field',
 
     # Providers
     'allauth.socialaccount.providers.facebook',
@@ -164,12 +166,23 @@ MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
 
+# Contact field region
+PHONENUMBER_DEFAULT_REGION='IN'
+
 SITE_ID = 2
 SOCIALACCOUNT_LOGIN_ON_GET = True
 SOCIALACCOUNT_QUERY_EMAIL=True
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Email Smtp Settings
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

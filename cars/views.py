@@ -30,10 +30,10 @@ def car_detail(request, id):
     data = {'car_detail': car_detail}
     return render(request, 'cars/car_detail.html', data)
 
-def city_cars(request, state):
-    state_cars = Cars.objects.order_by('-is_featured').filter(state=state)
-    data = {'state_cars': state_cars}
-    return render(request, 'cars/state_cars.html', data)
+def city_cars(request, city):
+    city_cars = Cars.objects.order_by('-is_featured').filter(city=city)
+    data = {'city_cars': city_cars}
+    return render(request, 'cars/city_cars.html', data)
 
 def search(request):
     cars = Cars.objects.order_by('-is_featured')

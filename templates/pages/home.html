@@ -177,7 +177,7 @@
                                 <a href="{% url "cars:car-detail" car.id %}">{{car.car_title}}</a>
                             </h1>
                             <div class="location">
-                                <a href="{% url "cars:state-cars" car.state %}">
+                                <a href="{% url "cars:city-cars" car.city %}">
                                     <i class="flaticon-pin"></i>{{car.city}}, {{car.state}}
                                 </a>
                             </div>
@@ -278,7 +278,7 @@
                             <a href="{% url "cars:car-detail" car.id %}">{{car.car_title}}</a>
                         </h1>
                         <div class="location">
-                            <a href="{% url "cars:state-cars" car.state %}">
+                            <a href="{% url "cars:city-cars" car.city %}">
                                 <i class="flaticon-pin"></i>{{car.city}}, {{car.state}}
                             </a>
                         </div>

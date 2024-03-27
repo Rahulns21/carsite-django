@@ -28,7 +28,7 @@ class Cars(models.Model):
         ('Anti-lock Braking System (ABS)', 'Anti-lock Braking System (ABS)'), ('Audio Interface', 'Audio Interface'), ('Auto Start/Stop', 'Auto Start/Stop'),
         ('Bluetooth Handset', 'Bluetooth Handset'), ('Central Locking System', 'Central Locking System'), ('Cruise Control', 'Cruise Control'),
         ('Direct Fuel Injection', 'Direct Fuel Injection'), ('ParkAssist', 'ParkAssist'), ('Power Steering', 'Power Steering'),
-        ('Reversing Camera', 'Reversing Camera'), ('Seat Heating', 'Seat Heating'), ('Wind Deflector', 'Wind Deflector'),
+        ('Reversing Camera', 'Reversing Camera'), ('Seat Heating', 'Seat Heating'), ('Wind Deflector', 'Wind Deflector'), ('Alloy Wheels', 'Alloy Wheels'),
     )
 
     door_choices = (
