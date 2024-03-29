@@ -1,10 +1,9 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 app_name = 'cars'
 urlpatterns = [
     path('', views.cars, name='cars'),
     path('search/', views.search, name='search'),
-    path('<int:id>/', views.car_detail, name='car-detail'),
-    path('<str:city>/', views.city_cars, name='city-cars'),
+    path('<str:slug>/', views.car_detail, name='car-detail'),
 ]

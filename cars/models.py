@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from ckeditor.fields import RichTextField
 from multiselectfield import MultiSelectField
+from autoslug import AutoSlugField
 
 class Cars(models.Model):
     class Meta:
@@ -64,9 +65,16 @@ class Cars(models.Model):
     year_choice = []
     for y in range(datetime.now().year, 1949, -1):
         year_choice.append((y, y))
+
+    def save(self, *args, **kwargs):
+        # If the car_title has changed, update the slug field
+        if self.car_title and self.slug != self.car_title:
+            self.slug = self.car_title
+        super().save(*args, **kwargs)
     
     car_brand = models.CharField(max_length=200)
     car_title = models.CharField(max_length=200)
+    slug = AutoSlugField(populate_from='car_title', unique=True, null=True, default=None)
     state = models.CharField(choices=indian_states, max_length=200)
     city = models.CharField(max_length=200)
     color = models.CharField(max_length=200)

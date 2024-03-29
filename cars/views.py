@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from .models import Cars
 
-
 def cars(request):
     cars = Cars.objects.order_by('-is_featured')
     paginator = Paginator(cars, 4)
@@ -25,15 +24,10 @@ def cars(request):
     }
     return render(request, 'cars/cars.html', data)
 
-def car_detail(request, id):
-    car_detail = get_object_or_404(Cars, pk=id)
+def car_detail(request, slug):
+    car_detail = get_object_or_404(Cars, slug=slug)
     data = {'car_detail': car_detail}
     return render(request, 'cars/car_detail.html', data)
-
-def city_cars(request, city):
-    city_cars = Cars.objects.order_by('-is_featured').filter(city=city)
-    data = {'city_cars': city_cars}
-    return render(request, 'cars/city_cars.html', data)
 
 def search(request):
     cars = Cars.objects.order_by('-is_featured')
